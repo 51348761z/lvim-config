@@ -11,7 +11,7 @@ an executable
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save.enabled = false
-lvim.colorscheme = "tokyonight"
+
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
@@ -44,9 +44,6 @@ lvim.builtin.telescope.defaults.mappings = {
   },
 }
 
--- Change theme settings
--- lvim.builtin.theme.options.dim_inactive = true
-lvim.builtin.theme.tokyonight.style = "storm"
 
 -- Use which-key to add extra bindings with the leader-key prefix
 lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
@@ -66,7 +63,7 @@ lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
-lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
+lvim.builtin.nvimtree.setup.renderer.icons.show.git = true
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
@@ -164,14 +161,6 @@ formatters.setup {
 --   },
 -- }
 
--- Additional Plugins
-lvim.plugins = {
-  {
-    "folke/trouble.nvim",
-    cmd = "TroubleToggle",
-  },
-}
-
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- vim.api.nvim_create_autocmd("BufEnter", {
 --   pattern = { "*.json", "*.jsonc" },
@@ -185,13 +174,10 @@ vim.api.nvim_create_autocmd("FileType", {
     require("nvim-treesitter.highlight").attach(0, "bash")
   end,
 })
-require("lvim.lsp.manager").setup("angularls")
---- my configuration are below:
--- require("lvim.custom.my_general")
--- require("lvim.custom.my_keybinds")
--- require("lvim.custom.my_plugins")
+reload("lvim.lsp.manager").setup("angularls")
+--- custom settings
 reload("user.my_general")
 reload("user.my_keybinds")
+reload("user.builtin")
 reload("user.my_plugins")
-require("user.treesitter").config()
-require("user.terminal").config()
+reload("user.colorscheme")

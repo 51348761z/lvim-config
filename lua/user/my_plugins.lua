@@ -1,12 +1,21 @@
+--- using lvim.plugins not work
+require("hop").setup()
+vim.api.nvim_set_keymap("n", "s", ":HopChar2<cr>", { silent = true })
+vim.api.nvim_set_keymap("n", "S", ":HopWord<cr>", { silent = true })
+
 lvim.plugins = {
   {
+    {
+      "folke/trouble.nvim",
+      cmd = "TroubleToggle",
+    },
     "phaazon/hop.nvim",
     event = "BufRead",
-    config = function()
-      require("hop").setup()
-      vim.api.nvim_set_keymap("n", "s", ":HopChar2<cr>", { silent = true })
-      vim.api.nvim_set_keymap("n", "S", ":HopWord<cr>", { silent = true })
-    end,
+    -- config = function()
+    -- require("hop").setup()
+    -- vim.api.nvim_set_keymap("n", "s", ":HopChar2<cr>", { silent = true })
+    -- vim.api.nvim_set_keymap("n", "S", ":HopWord<cr>", { silent = true })
+    -- end,
   },
   { "tpope/vim-repeat" },
   {
@@ -39,4 +48,32 @@ lvim.plugins = {
       vim.cmd [[packadd telescope.nvim]]
     end,
   },
+  {
+    "sindrets/diffview.nvim",
+    event = "BufRead",
+  },
+  {
+    "f-person/git-blame.nvim",
+    event = "BufRead",
+    config = function()
+      vim.cmd "highlight default link gitblame SpecialComment"
+      vim.g.gitblame_enabled = 0
+    end,
+  },
+  { "rafamadriz/neon" },
+  { "sainnhe/gruvbox-material" },
+  { "sainnhe/sonokai" },
+  { "mg979/vim-visual-multi" },
+  {
+    "brenoprata10/nvim-highlight-colors",
+    event = "BufRead",
+    config = function()
+      require("nvim-highlight-colors").setup {
+        render = 'background', -- or 'foreground' or 'first_column'
+        enable_named_colors = true,
+        enable_tailwind = false
+      }
+    end
+  },
 }
+
