@@ -75,5 +75,24 @@ lvim.plugins = {
       }
     end
   },
+  {
+    "uga-rosa/translate.nvim",
+  }
 }
-
+require("translate").setup({
+  default = {
+    command = "translate_shell",
+    output = "floating",
+  },
+  preset = {
+    output = {
+      split = {
+        append = true,
+      },
+      floating = {
+        width = 1,
+        height = 1,
+      },
+    },
+  },
+})

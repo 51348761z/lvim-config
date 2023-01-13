@@ -25,3 +25,6 @@ lvim.keys.normal_mode["<M-k>"] = ":resize -2<cr>"
 lvim.keys.normal_mode["<M-h>"] = ":vertical resize -2<cr>"
 lvim.keys.normal_mode["<M-l>"] = ":vertical resize +2<cr>"
 
+-- translate
+lvim.keys.normal_mode["<space>lt"] = ":Translate zh<CR>"
+lvim.keys.visual_block_mode["<space>t"] = ":Translate zh<CR>"

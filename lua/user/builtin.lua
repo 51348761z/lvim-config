@@ -2,9 +2,9 @@ lvim.builtin.treesitter.incremental_selection = {
   enable = true,
   keymaps = {
     init_selection = "<CR>", -- set to `false` to disable one of the mappings
-    node_incremental = "<CR>",
-    scope_incremental = "<BS>",
-    node_decremental = "<TAB>",
+    -- node_incremental = "<CR>",
+    scope_incremental = "<leader>g",
+    node_decremental = "<BS>",
   },
 }
 
@@ -23,5 +23,9 @@ lvim.builtin.nvimtree.setup.renderer.icons.glyphs.git = {
 }
 
 lvim.builtin.which_key.mappings.l.o = {
-  "<cmd>SymbolsOutline<cr>", "Symbols Outline"
+  "<cmd>SymbolsOutline<cr>", "Symbols Outline",
 }
+lvim.builtin.which_key.mappings.l.t = {
+  "<cmd>Translate zh<cr>", "Translate",
+}
+
