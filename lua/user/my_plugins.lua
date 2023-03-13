@@ -1,21 +1,30 @@
 --- using lvim.plugins not work
-require("hop").setup()
-vim.api.nvim_set_keymap("n", "s", ":HopChar2<cr>", { silent = true })
-vim.api.nvim_set_keymap("n", "S", ":HopWord<cr>", { silent = true })
+-- require("hop").setup()
+-- require("ibus-sw").setup()
+-- vim.api.nvim_set_keymap("n", "s", ":HopChar2<cr>", { silent = true })
+-- vim.api.nvim_set_keymap("n", "S", ":HopWord<cr>", { silent = true })
 
 lvim.plugins = {
+  --- automatic swich between insert and normal mode
   {
-    {
-      "folke/trouble.nvim",
-      cmd = "TroubleToggle",
-    },
+    "kevinhwang91/nvim-ibus-sw",
+    event = "InsertEnter",
+    config = function()
+      require('ibus-sw').setup()
+    end
+  },
+  {
+    "folke/trouble.nvim",
+    cmd = "TroubleToggle",
+  },
+  {
     "phaazon/hop.nvim",
     event = "BufRead",
-    -- config = function()
-    -- require("hop").setup()
-    -- vim.api.nvim_set_keymap("n", "s", ":HopChar2<cr>", { silent = true })
-    -- vim.api.nvim_set_keymap("n", "S", ":HopWord<cr>", { silent = true })
-    -- end,
+    config = function()
+      require("hop").setup()
+      vim.api.nvim_set_keymap("n", "s", ":HopChar2<cr>", { silent = true })
+      vim.api.nvim_set_keymap("n", "S", ":HopWord<cr>", { silent = true })
+    end,
   },
   { "tpope/vim-repeat" },
   {
@@ -73,26 +82,29 @@ lvim.plugins = {
         enable_named_colors = true,
         enable_tailwind = false
       }
-    end
+    end,
   },
   {
     "uga-rosa/translate.nvim",
-  }
+    config = function()
+      require("translate").setup({
+        default = {
+          command = "translate_shell",
+          output = "floating",
+        },
+        preset = {
+          output = {
+            split = {
+              append = true,
+            },
+            floating = {
+              width = 1,
+              height = 1,
+            },
+          },
+        },
+      })
+    end,
+  },
 }
-require("translate").setup({
-  default = {
-    command = "translate_shell",
-    output = "floating",
-  },
-  preset = {
-    output = {
-      split = {
-        append = true,
-      },
-      floating = {
-        width = 1,
-        height = 1,
-      },
-    },
-  },
-})
+
